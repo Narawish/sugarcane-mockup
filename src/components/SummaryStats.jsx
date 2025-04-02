@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import _ from 'lodash';
 
-const SummaryStats = ({ harvestData }) => {
+const SummaryStats = ({ harvestData , isFull}) => {
   // Calculate summary statistics
   const summaryStats = useMemo(() => {
     // Count of each status
@@ -36,27 +36,30 @@ const SummaryStats = ({ harvestData }) => {
   };
 
   return (
-    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="mt-6 flex align-middle justify-center gap-4 ">
       {/* Total Area */}
-      <div className="bg-white p-4 rounded-lg shadow-md">
+      {isFull ? 
+      <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
         <h3 className="text-lg font-medium text-gray-900 mb-2">พื้นที่รวมทั้งหมด</h3>
         <p className="text-3xl font-bold text-green-600">
           {summaryStats.totalArea.toFixed(1)}
           <span className="text-sm text-gray-500 font-normal ml-2">ไร่</span>
         </p>
       </div>
+      : <></>}
+      
 
       {/* Status Breakdown */}
       <div className="bg-white p-4 rounded-lg shadow-md col-span-2">
         <h3 className="text-lg font-medium text-gray-900 mb-2">สรุปสถานะการตัดอ้อย</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <div className="flex gap-2">
           {Object.entries(summaryStats.statusCounts).map(([status, count]) => (
             <div 
               key={status} 
               className={`p-3 rounded-lg ${getStatusColor(status)} flex flex-col`}
             >
               <span className="text-sm font-medium">{status}</span>
-              <div className="flex justify-between items-center mt-1">
+              <div className="flex justify-between items-center mt-1 gap-2">
                 <span className="text-2xl font-bold">{count}</span>
                 <span className="text-sm">
                   {summaryStats.statusAreaBreakdown[status]?.toFixed(1) || '0.0'} ไร่

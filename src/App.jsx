@@ -68,7 +68,7 @@ const App = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'home':
-        return <SummaryStats harvestData={harvestData} />;
+        return <SummaryStats harvestData={harvestData} isFull={true}/>;
       case 'reports':
         return (
           <>
@@ -96,7 +96,7 @@ const App = () => {
       case 'dashboard':
         return <Dashboard harvestData={harvestData} />;
       default:
-        return <SummaryStats harvestData={harvestData} />;
+        return <SummaryStats harvestData={harvestData} isFull={true}/>;
     }
   };
 
@@ -112,8 +112,10 @@ const App = () => {
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
       />
-
+      
       <main className="flex-grow container mx-auto p-4">
+      {activeTab !== 'home' ?<SummaryStats harvestData={harvestData} isFull={false}/>:<></>}
+      
         {renderTabContent()}
       </main>
       

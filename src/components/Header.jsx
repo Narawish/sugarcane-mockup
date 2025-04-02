@@ -3,7 +3,7 @@ import { Clock } from 'lucide-react';
 
 const Header = ({ currentTime, formatDate, formatTime }) => {
   return (
-    <header className="bg-green-800 text-white p-4 shadow-md">
+    <header className="bg-green-800 text-white p-3 shadow-md">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">ระบบติดตามการตัดอ้อย</h1>

@@ -361,9 +361,9 @@ const Dashboard = ({ harvestData }) => {
     <div className="flex">
       {/* Sidebar Filters */}
       <div className={`
-        ${isSidebarOpen ? 'w-64' : 'w-16'} 
+        ${isSidebarOpen ? 'w-64 top-16 bottom-16' : 'w-16 top-16'} 
         bg-white shadow-md transition-all duration-300 ease-in-out
-        fixed left-0 top-16 bottom-16 z-40 overflow-y-auto
+        fixed left-0  z-40 overflow-y-auto
       `}>
         {/* Sidebar Toggle */}
         <button 
@@ -375,9 +375,9 @@ const Dashboard = ({ harvestData }) => {
 
         {/* Filters Content */}
         
-        <div className="p-4 pt-16 h-full">
+        <div className="pt-16 h-full">
           {isSidebarOpen ? 
-          <>
+          <div className="p-4">
           <h3 className="text-xl font-bold text-gray-800 flex items-center mb-4">
             <Filter className="mr-2 h-5 w-5" /> ตัวกรอง
           </h3>
@@ -432,7 +432,7 @@ const Dashboard = ({ harvestData }) => {
               </select>
             </div>
           ))}
-          </>
+          </div>
           : ""}
         </div>
       </div>
